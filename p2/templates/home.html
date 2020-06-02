@@ -4,7 +4,7 @@
 <body class="animsition">
 <div class="page-wrapper">
     {% include "navbar.html" %}
-    <div class="cards-list">
+    <div class="cards-list" >
        <a href="{% url 'create_consultation' %}">
         <div class="card 1"style="margin-left:90px;">
             <div class="card_image"> <img src="/assets/images/consult.png"/></div>
@@ -23,6 +23,7 @@
             </div>
         </div>
           </a>
+         <a href="{% url 'create_hospitalisation' %}">
         <div class="card 3"style="margin-top:-10px;">
             <div class="card_image">
                 <img src="/assets/images/hospi.png">
@@ -30,7 +31,7 @@
             <div class="card_title">
                 <p>Hospitalisation</p>
             </div>
-        </div>
+        </div></a>
 
 
     </div>

@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+<style>
+
+    p {
+        color: #7996bd;
+    }
+
+    h4 {
+        margin-top: 100px;
+    }
+
+    .card-text small.text-muted {
+        color: #2e876e important;
+    }
+
+    p.card-text.text-muted {
+        font-size: 13px;
+    }
+
+    p.card-text {
+
+    }
+
+
+
+</style>
+{% block detailDossier %}
+    {% load static %}
+    {% load i18n %}
+    {% include "navbar.html" %}
+    <div class="container"
+         style="background: url('{% static "images/fiche.jpg" %}');background-size:1201px 1600px;height: 1650px;width:1450px;"
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ consultation.patient.image.url }}" alt="" width="120px" height="90px"
+                     style="padding-top: 330px;margin-left: 190px; border-radius: 50%;"/>
+            </div>
+            <div class="col-md-6">
+                <h4 class="card-title font-weight-bolder"
+                    style="padding-top: 330px;margin-left:80px;font-size:20px"><u>N°Dossier </u>:{{ consultation.numero }}</h4>
+            </div>
+
+        </div>
+
+        <div class="card-body" style="padding-left:220px">
+            <h5 class="card-title" style="color:#5c5b59;font-size:20px;"><u>Patient</u></h5>
+            <p class="card-text"><small class="text-muted" style="color:#2e873e !important;font-size:13px;"></small>
+            <div class="row" >
+                <div class="col-md-3 cd">
+                    <strong>Nom : </strong>{{ consultation.patient.nom }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Prenom :</strong>{{ consultation.patient.prenom }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    {% language 'fr' %}
+                        <strong> Date Naissance : </strong>{{ consultation.patient.dateNaissance|date:'d F Y' }}
+
+                    {% endlanguage %}
+                </div>
+                <div class="col-md-6">
+                    <strong>Sexe :</strong>{{ consultation.patient.sexe }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong> Profession : </strong>{{ consultation.patient.profession }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Sécurité Sociale :</strong>{{ consultation.patient.securiteSocial }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong> Adresse : </strong>{{ consultation.patient.adresse }} à {{ consultation.patient.ville }}
+                </div>
+                <div class="col-md-6">
+                    <strong>Téléphone : </strong>{{ consultation.patient.telephone }}
+                </div>
+            </div>
+
+
+            <h5 class="card-title" style="color:#5c5b59;font-size:20px;"><u>Consultation</u></h5>
+            <p class="card-text"><small class="text-muted" style="color:#2e873e !important;font-size:13px;"></small>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Médecin Traitant : </strong>{{ consultation.patient.medecin }}
+                </div>
+                <div class="col-md-3">
+                    <strong>Chirurgien </strong>{{ consultation.patient.chirurgien }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong> Habitude Toxique : </strong>
+                    {% if consultation.alcool %}
+                        alcool
+                    {% endif %}
+                    {% if consultation.drogue %}
+                        drogue
+                    {% endif %}
+                    {% if consultation.tabac %}
+                        tabac.
+                    {% endif %}
+                </div>
+                <div class="col-md-3">
+                    <strong>Maladie :</strong>{{ consultation.Maladie }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong> Antécédent : </strong>{{ consultation.antecedant }}
+                </div>
+                <div class="col-md-3">
+                    <strong>Groupe Sanguin :</strong>{{ consultation.groupeSanguin }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong> Traitement : </strong>{{ consultation.traitement }}
+                </div>
+                <div class="col-md-3">
+                    <strong>Avis Médical : </strong>{{ consultation.avisMedical }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>element clinique medicale : </strong>{{ consultation.espaceClinique }}
+                </div>
+            </div>
+
+
+            <h5 class="card-title" style="color:#5c5b59;font-size:20px;"><u>Intervention</u></h5>
+            <p class="card-text"><small class="text-muted" style="color:#2e873e !important;font-size:13px;"></small>
+                {% if  intervention.count > 1 %}
+                    {% for interventions in intervention %}
+                        <div class="row">
+                            <div class="col-md-3">
+                                                    {% language 'fr' %}
+                                <strong>Date : </strong>{{ interventions.dateIntervention }}
+                                {% endlanguage %}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Heure :</strong>{{ interventions.heureIntervention }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong> Duréé: </strong>{{ interventions.dureeIntervention }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Lieu :</strong>{{ interventions.lieuIntervention }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong> Type : </strong>{{ interventions.typeIntervention }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Mode :</strong>{{ interventions.modeIntervention }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong> Anésthésie : </strong>{{ interventions.anesthesie }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Compte Rendu : </strong>{{ interventions.compteRendu }}
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 10px">
+                            <div class="col-md-3">
+                                <strong>Résultat : </strong>{{ interventions.resultat }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong> Téchnique : </strong>{{ interventions.technique }}
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 11px">
+                            <div class="col-md-3">
+                                <strong>Complication : </strong>{{ interventions.complication }}
+                            </div>
+                            <div class="col-md-3">
+                                <strong> Anésthesiste : </strong>Ms/Mme {{ interventions.anesthesiste }}
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 33px">
+                            <div class="col-md-3">
+                                <strong>Infirmier : </strong>Ms/Mme {{ interventions.infirmier }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <h5 class="card-title" style="color:#5c5b59;font-size:20px;margin-left: 140px">
+                        {% if hospitalisation != null %}
+                        <u>Hospitalisation</u></h5>
+                    <p class="card-text"><small class="text-muted"
+                                                style="color:#2e873e !important;font-size:13px;"></small>
+                    <div class="row" style="margin-left: 148px">
+                        <div class="col-md-3">
+                            <strong>Date d'entrée au service : </strong>{{ hospitalisation.date }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Type d'hospitalisation :</strong>{{ hospitalisation.type }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left: 155px">
+                        <div class="col-md-3">
+                            <strong> Lieu : </strong>{{ hospitalisation.lieu }}
+                        </div>
+                        <div class="col-md-3">
+                                                {% language 'fr' %}
+                            <strong>Date de sortie :</strong>{{ hospitalisation.dateSortie }}
+                            {% endlanguage %}
+                        </div>
+                    </div>
+            {% endif %}
+
+
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-3">
+                                                {% language 'fr' %}
+                            <strong>Date : </strong>{{ intervention.dateIntervention }}
+                            {% endlanguage %}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Heure :</strong>{{ intervention.heureIntervention }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong> Duréé: </strong>{{ intervention.dureeIntervention }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Lieu :</strong>{{ intervention.lieuIntervention }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong> Type : </strong>{{ intervention.typeIntervention }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Mode :</strong>{{ intervention.modeIntervention }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong> Anésthésie : </strong>{{ intervention.anesthesie }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Compte Rendu : </strong> <a href=" {{ intervention.compteRendu.url }}">Télecharger</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Résultat : </strong>{{ intervention.resultat }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong> Téchnique : </strong>{{ intervention.technique }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Complication : </strong>{{ intervention.complication }}
+                        </div>
+                        <div class="col-md-3">
+                            <strong> Anésthesiste : </strong>Ms/Mme {{ intervention.anesthesiste }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>Infirmier : </strong>Ms/Mme {{ intervention.infirmier }}
+                        </div>
+                    </div>
+            {% if hospitalisation != null %}
+                    <h5 class="card-title" style="color:#5c5b59;font-size:20px;"><u>Hospitalisation</u></h5>
+                    <p class="card-text"><small class="text-muted"
+                                                style="color:#2e873e !important;font-size:13px;"></small>
+                    <div class="row">
+                        <div class="col-md-3">
+                                                                            {% language 'fr' %}
+
+                            <strong>Date d'entrée au service : </strong>{{ hospitalisation.date }}
+                            {% endlanguage %}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Type d'hospitalisation :</strong>{{ hospitalisation.type }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong> Lieu : </strong>{{ hospitalisation.lieu }}
+                        </div>
+                        <div class="col-md-3">
+                                                {% language 'fr' %}
+                            <strong>Date de sortie :</strong>{{ hospitalisation.dateSortie }}
+                            {% endlanguage %}
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+    </div>
+
+{% endblock detailDossier %}

@@ -96,9 +96,11 @@
 				<div class="d-flex justify-content-center  mb-3">
 					<h3 class="card-header">SE CONNECTER</h3>
 				</div>
+				{% if messages %}
                 {% for message in messages %}
 					<p id="messages">{{message}}</p>
 				{% endfor %}
+				{% endif %}
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="">
 						{% csrf_token %}
