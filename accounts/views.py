@@ -132,7 +132,7 @@ def user_deactivate(request, user_id):
     user = User.objects.get(pk=user_id)
     user.is_active = False
     user.save()
-    messages.success(request, "User account has been successfully deactivated!")
+    messages.success(request, "Le compte a été desactivé !")
     return redirect('system_users')
 
 
@@ -141,7 +141,7 @@ def user_activate(request, user_id):
     user = User.objects.get(pk=user_id)
     user.is_active = True
     user.save()
-    messages.success(request, "User account has been successfully activated!")
+    messages.success(request, "Le compte est activé!")
     return redirect('system_users')
 
 
