@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="/assets/css/hospitalisation.css">
 
 <form method="POST" enctype="multipart/form-data">
+    <button type="submit" class="btn next btn-warning" style="margin-top: 40px;float:right; margin-right:50px;">
+                  <a href="{% url 'update_intervention' hospitalisation.numero_id %}" style="color: white">Suivant<i class="fas fa-arrow-right"style="margin-left:10px;"></i></a></button>
+
     <div class="card">
         <div class="card-header">
             Détails de l'hospitalistion
@@ -69,5 +72,8 @@
 
 
 </form>
+    <br>
+    <br>
+<!--              <button class="btn btn-warning"><a href="{% url 'update_intervention' hospitalisation.numero_id %}" style="color: white">suivant</a></button>-->
 
 {% endblock hospitalisation %}
