@@ -33,6 +33,7 @@
 
 </head>
 <body>
+{% if user.is_authenticated %}
 {% block content %}{% endblock content %}
 {% block patientBody %}{% endblock patientBody %}
 {% block patientFormBody %}{% endblock patientFormBody %}
@@ -53,6 +54,12 @@
 {% block intervention %}{% endblock intervention %}
 {% block consultationBody %}{% endblock consultationBody %}
 {% block hospitalisation %}{% endblock hospitalisation %}
+{% block calendar %}{% endblock calendar %}
+{% block detailDossier %}{% endblock detailDossier %}
+{% block pie_chart %}{% endblock pie_chart %}
+{% block pie_chart_result %}{% endblock pie_chart_result%}
+{% endif %}
+
  <script src="/assets/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="/assets/vendor/bootstrap-4.1/popper.min.js"></script>
