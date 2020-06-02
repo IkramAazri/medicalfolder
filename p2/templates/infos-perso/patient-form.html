@@ -24,6 +24,7 @@
                 {% csrf_token %}
                 <div class="row">
                     <div class="col">
+                        {% if messages %}
                     {% for message in messages %}
                         {% if message.tags == "success" %}
                     <p id="messages" style="color:green;">{{message}}</p>
@@ -31,9 +32,8 @@
                         {% if message.tags == "warning" %}
                     <p id="message" style="color:red;">{{message}}</p>
                         {% endif %}
-
-
                     {% endfor %}
+                    {% endif %}
                     </div>
                 </div>
             </form><hr align="center"  color="#cbcdd1" size="3">
